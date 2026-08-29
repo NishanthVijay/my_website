@@ -1,0 +1,834 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0d0f;
+  --surface: #11161a;
+  --surface-light: #161d21;
+
+  --border: #263238;
+
+  --foreground: #f2f5f7;
+  --muted: #8b969c;
+
+  --accent: #00d4c7;
+  --accent-hover: #19e6d8;
+
+  --font-heading: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-heading), sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Utility classes */
+
+.font-heading {
+  font-family: var(--font-heading), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Subtle engineering grid */
+
+.technical-grid {
+  background-image:
+    linear-gradient(rgba(38, 50, 56, 0.08) 1px,
+      transparent 1px),
+    linear-gradient(90deg,
+      rgba(38, 50, 56, 0.08) 1px,
+      transparent 1px);
+
+  background-size: 40px 40px;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes signal {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* ======================================================
+   EMBEDDED SYSTEM ANIMATIONS
+====================================================== */
+
+.embedded-status-dot {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 212, 199, 0.3);
+  }
+
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 14px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Signal moving from left to right */
+
+.embedded-signal {
+  animation: signalMove 3s ease-in-out infinite;
+}
+
+@keyframes signalMove {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+
+/* Signal moving from right to left */
+
+.embedded-signal-reverse {
+  animation: signalMoveReverse 3.5s ease-in-out infinite;
+}
+
+@keyframes signalMoveReverse {
+  0% {
+    right: 0%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    right: 100%;
+    opacity: 0;
+  }
+}
+
+
+/* Respect accessibility settings */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .embedded-status-dot,
+  .embedded-signal,
+  .embedded-signal-reverse {
+    animation: none !important;
+  }
+}
+
+/* ======================================================
+   ABOUT SECTION
+====================================================== */
+
+.about-section {
+  background:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px);
+  background-size: 56px 56px;
+}
+
+.about-glow {
+  animation: aboutGlow 8s ease-in-out infinite;
+}
+
+@keyframes aboutGlow {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: translate(-30px, 20px);
+  }
+}
+
+
+/* Profile system indicator */
+
+.about-status-dot {
+  animation: aboutStatusPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes aboutStatusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 212, 199, 0.35);
+  }
+
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 12px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-glow,
+  .about-status-dot {
+    animation: none !important;
+  }
+}
+
+/* ======================================================
+   EXPERIENCE SECTION
+====================================================== */
+
+.experience-section {
+  background:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px);
+  background-size: 56px 56px;
+}
+
+
+/* Background glow */
+
+.experience-glow {
+  animation: experienceGlow 10s ease-in-out infinite;
+}
+
+@keyframes experienceGlow {
+
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: translate(40px, -20px);
+  }
+}
+
+
+/* Timeline active node */
+
+.experience-node-active {
+  animation: experiencePulse 2.2s ease-in-out infinite;
+}
+
+@keyframes experiencePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 212, 199, 0.4);
+  }
+
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 14px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Workflow status indicator */
+
+.experience-status-dot {
+  animation: experienceStatusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes experienceStatusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 212, 199, 0.3);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 12px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .experience-glow,
+  .experience-node-active,
+  .experience-status-dot {
+    animation: none !important;
+  }
+}
+
+/* ======================================================
+   SKILLS SECTION
+====================================================== */
+
+.skills-section {
+  background:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px);
+
+  background-size: 56px 56px;
+}
+
+
+/* Background movement */
+
+.skills-glow {
+  animation: skillsGlow 11s ease-in-out infinite;
+}
+
+@keyframes skillsGlow {
+
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: translate(-40px, 25px);
+  }
+}
+
+
+/* Learning status */
+
+.skills-learning-dot {
+  animation: skillsLearningPulse 2s ease-in-out infinite;
+}
+
+@keyframes skillsLearningPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 212, 199, 0.4);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 14px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Capability status */
+
+.skills-status-dot {
+  animation: skillsStatusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes skillsStatusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(0, 212, 199, 0.3);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 12px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .skills-glow,
+  .skills-learning-dot,
+  .skills-status-dot {
+    animation: none !important;
+  }
+}
+
+/* ======================================================
+   PROJECT LAB SECTION
+====================================================== */
+
+.project-lab-section {
+  background:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px);
+
+  background-size: 56px 56px;
+}
+
+
+/* Background glow */
+
+.project-lab-glow {
+  animation: projectLabGlow 12s ease-in-out infinite;
+}
+
+@keyframes projectLabGlow {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: translateX(-50%) translateY(-35px);
+  }
+}
+
+
+/* Status indicator */
+
+.project-status-dot {
+  animation: projectStatusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes projectStatusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(0, 212, 199, 0.4);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 16px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* GitHub button */
+
+.project-github-button {
+  box-shadow: 0 0 0 rgba(0, 212, 199, 0);
+}
+
+.project-github-button:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 199, 0.15);
+}
+
+
+/* Project cards */
+
+.project-card {
+  background-image:
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.02),
+      transparent 45%);
+}
+
+
+/* Mobile adjustments */
+
+@media (max-width: 767px) {
+  .project-lab-section {
+    background-size: 40px 40px;
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .project-lab-glow,
+  .project-status-dot {
+    animation: none !important;
+  }
+
+  .project-card,
+  .project-github-button {
+    transition: none !important;
+  }
+}
+
+/* ======================================================
+   PROJECT PLACEHOLDERS
+====================================================== */
+
+.project-placeholder-container {
+  background:
+    linear-gradient(to right,
+      rgba(0, 212, 199, 0.02) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(0, 212, 199, 0.02) 1px,
+      transparent 1px);
+
+  background-size: 40px 40px;
+}
+
+
+/* Placeholder cards */
+
+.project-placeholder {
+  background:
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.015),
+      transparent 60%);
+}
+
+
+.project-placeholder:hover {
+  background:
+    linear-gradient(135deg,
+      rgba(0, 212, 199, 0.04),
+      transparent 60%);
+}
+
+
+/* Placeholder icon glow */
+
+.project-placeholder-icon {
+  box-shadow: 0 0 0 rgba(0, 212, 199, 0);
+}
+
+
+.project-placeholder:hover .project-placeholder-icon {
+  box-shadow: 0 0 30px rgba(0, 212, 199, 0.12);
+}
+
+
+/* Repository terminal */
+
+.project-terminal-icon {
+  box-shadow: 0 0 25px rgba(0, 212, 199, 0.08);
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .project-placeholder {
+    min-height: 330px;
+  }
+
+  .project-placeholder-container {
+    padding: 12px;
+  }
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .project-placeholder,
+  .project-placeholder-icon {
+    transition: none !important;
+  }
+}
+
+/* ======================================================
+   CONTACT SECTION
+====================================================== */
+
+.contact-section {
+  background:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px);
+
+  background-size: 56px 56px;
+}
+
+
+/* Background glow */
+
+.contact-glow {
+  animation: contactGlow 10s ease-in-out infinite;
+}
+
+@keyframes contactGlow {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: translate(-30px, -30px);
+  }
+}
+
+
+/* Contact status indicator */
+
+.contact-status-dot {
+  animation: contactStatusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes contactStatusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 6px rgba(0, 212, 199, 0.5);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 18px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Terminal */
+
+.contact-terminal {
+  background-image:
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.018),
+      transparent 50%);
+}
+
+
+/* Email CTA */
+
+.contact-email-button {
+  box-shadow: 0 0 0 rgba(0, 212, 199, 0);
+}
+
+.contact-email-button:hover {
+  box-shadow: 0 0 40px rgba(0, 212, 199, 0.22);
+}
+
+
+/* Mobile adjustments */
+
+@media (max-width: 767px) {
+  .contact-section {
+    background-size: 40px 40px;
+  }
+
+  .contact-email-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact-glow,
+  .contact-status-dot {
+    animation: none !important;
+  }
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+.footer-section {
+  background:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px),
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px);
+
+  background-size: 56px 56px;
+}
+
+
+/* Footer links */
+
+.footer-link {
+  position: relative;
+  width: fit-content;
+
+  font-family: var(--font-jetbrains-mono);
+  font-size: 10px;
+
+  letter-spacing: 0.12em;
+
+  color: var(--muted);
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.footer-link::before {
+  content: ">";
+
+  position: absolute;
+
+  left: -14px;
+
+  opacity: 0;
+
+  color: var(--accent);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  transform: translateX(-4px);
+}
+
+
+.footer-link:hover {
+  color: var(--foreground);
+
+  transform: translateX(8px);
+}
+
+
+.footer-link:hover::before {
+  opacity: 1;
+
+  transform: translateX(0);
+}
+
+
+/* Status indicator */
+
+.footer-status-dot {
+  animation: footerStatusPulse 2.5s ease-in-out infinite;
+}
+
+
+@keyframes footerStatusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+
+    box-shadow: 0 0 6px rgba(0, 212, 199, 0.4);
+  }
+
+  50% {
+    opacity: 0.5;
+
+    box-shadow: 0 0 16px rgba(0, 212, 199, 0.9);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .footer-section {
+    background-size: 40px 40px;
+  }
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-status-dot {
+    animation: none !important;
+  }
+
+  .footer-link {
+    transition: none !important;
+  }
+}
